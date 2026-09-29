@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Checkout - Suraj Fashion Bazar</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+    <div class="logo">
+        🛍️ <span>Suraj Fashion Bazar</span>
+    </div>
+
+    <div class="headerActions">
+
+        <button onclick="goHome()">
+            🏠 Continue Shopping
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- ================= CHECKOUT ================= -->
+
+<main class="checkoutPage">
+
+    <div class="checkoutTitle">
+
+        <h1>
+            🧾 Checkout
+        </h1>
+
+        <p>
+            अपनी details भरकर order place करें।
+        </p>
+
+    </div>
+
+
+    <div class="checkoutGrid">
+
+
+        <!-- ================= CUSTOMER DETAILS ================= -->
+
+        <section class="checkoutCard">
+
+            <h2>
+                👤 Customer Details
+            </h2>
+
+
+            <div class="formGroup">
+
+                <label>
+                    पूरा नाम *
+                </label>
+
+                <input
+                    type="text"
+                    id="customerName"
+                    placeholder="अपना नाम"
+                >
+
+            </div>
+
+
+            <div class="formGroup">
+
+                <label>
+                    Mobile Number *
+                </label>
+
+                <input
+                    type="tel"
+                    id="customerMobile"
+                    placeholder="10 digit mobile number"
+                    maxlength="10"
+                >
+
+            </div>
+
+
+            <div class="formGroup">
+
+                <label>
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="customerEmail"
+                    placeholder="example@gmail.com"
+                >
+
+            </div>
+
+
+            <h2 class="addressTitle">
+                📍 Delivery Address
+            </h2>
+
+
+            <div class="formGroup">
+
+                <label>
+                    पूरा Address *
+                </label>
+
+                <textarea
+                    id="customerAddress"
+                    placeholder="House No., Village/Street, Area..."
+                    rows="4"
+                ></textarea>
+
+            </div>
+
+
+            <div class="twoColumn">
+
+                <div class="formGroup">
+
+                    <label>
+                        City *
+                    </label>
+
+                    <input
+                        type="text"
+                        id="customerCity"
+                        placeholder="City"
+                    >
+
+                </div>
+
+
+                <div class="formGroup">
+
+                    <label>
+                        State *
+                    </label>
+
+                    <input
+                        type="text"
+                        id="customerState"
+                        placeholder="State"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="formGroup">
+
+                <label>
+                    PIN Code *
+                </label>
+
+                <input
+                    type="tel"
+                    id="customerPin"
+                    placeholder="6 digit PIN"
+                    maxlength="6"
+                >
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= ORDER SUMMARY ================= -->
+
+        <section class="checkoutCard">
+
+            <h2>
+                🛒 Your Order
+            </h2>
+
+
+            <div id="checkoutItems">
+            </div>
+
+
+            <div class="checkoutSummary">
+
+                <div>
+
+                    <span>
+                        Subtotal
+                    </span>
+
+                    <strong id="checkoutSubtotal">
+                        ₹0
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Delivery
+                    </span>
+
+                    <strong id="checkoutDelivery">
+                        ₹0
+                    </strong>
+
+                </div>
+
+
+                <div class="checkoutTotal">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <strong id="checkoutTotal">
+                        ₹0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= PAYMENT ================= -->
+
+            <h2 class="paymentTitle">
+                💳 Payment Method
+            </h2>
+
+
+            <div class="paymentOptions">
+
+
+                <label class="paymentOption">
+
+                    <input
+                        type="radio"
+                        name="payment"
+                        value="COD"
+                        checked
+                    >
+
+                    <div>
+
+                        <strong>
+                            💵 Cash on Delivery
+                        </strong>
+
+                        <small>
+                            Delivery के समय payment
+                        </small>
+
+                    </div>
+
+                </label>
+
+
+                <label class="paymentOption">
+
+                    <input
+                        type="radio"
+                        name="payment"
+                        value="ONLINE"
+                    >
+
+                    <div>
+
+                        <strong>
+                            💳 Online Payment
+                        </strong>
+
+                        <small>
+                            Online payment option
+                        </small>
+
+                    </div>
+
+                </label>
+
+            </div>
+
+
+            <!-- ================= PLACE ORDER ================= -->
+
+            <button
+                class="placeOrderBtn"
+                onclick="placeOrder()"
+            >
+                🛍️ Place Order
+            </button>
+
+
+            <p class="secureText">
+                🔒 आपकी order information इसी browser में
+                सुरक्षित रूप से save की जाएगी।
+            </p>
+
+        </section>
+
+    </div>
+
+</main>
+
+
+<!-- ================= SUCCESS MODAL ================= -->
+
+<div
+    id="successModal"
+    class="modal"
+>
+
+    <div class="modalContent successBox">
+
+        <div class="successIcon">
+            ✅
+        </div>
+
+        <h2>
+            Order Successfully Placed!
+        </h2>
+
+        <p id="successMessage">
+            आपका order successfully place हो गया।
+        </p>
+
+        <div class="successOrderId">
+            Order ID:
+            <strong id="successOrderId">
+                --
+            </strong>
+        </div>
+
+        <button
+            class="mainBtn"
+            onclick="goHome()"
+        >
+            🏠 Continue Shopping
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================= TOAST ================= -->
+
+<div
+    id="toast"
+    class="toast"
+>
+</div>
+
+
+<script>
+
+/* =====================================================
+   PRODUCT DATA
+   ===================================================== */
+
+const products = [
+
+    {
+        id: 1,
+        name: "Classic Men T-Shirt",
+        category: "Men",
+        price: 349,
+        oldPrice: 699,
+        discount: 50,
+        image: "👕"
+    },
+
+    {
+        id: 2,
+        name: "Premium Ladies Dress",
+        category: "Women",
+        price: 844,
+        oldPrice: 1299,
+        discount: 35,
+        image: "👗"
+    },
+
+    {
+        id: 3,
+        name: "Sport Running Shoes",
+        category: "Shoes",
+        price: 1199,
+        oldPrice: 1599,
+        discount: 25,
+        image: "👟"
+    },
+
+    {
+        id: 4,
+        name: "Classic Fashion Watch",
+        category: "Watches",
+        price: 699,
+        oldPrice: 999,
+        discount: 30,
+        image: "⌚"
+    },
+
+    {
+        id: 5,
+        name: "Men Casual Shirt",
+        category: "Men",
+        price: 649,
+        oldPrice: 999,
+        discount: 35,
+        image: "👔"
+    },
+
+    {
+        id: 6,
+        name: "Women Handbag",
+        category: "Accessories",
+        price: 699,
+        oldPrice: 1399,
+        discount: 50,
+        image: "👜"
+    },
+
+    {
+        id: 7,
+        name: "Street Sneakers",
+        category: "Shoes",
+        price: 1424,
+        oldPrice: 1899,
+        discount: 25,
+        image: "👟"
+    },
+
+    {
+        id: 8,
+        name: "Luxury Style Watch",
+        category: "Watches",
+        price: 1104,
+        oldPrice: 1699,
+        discount: 35,
+        image: "⌚"
+    },
+
+    {
+        id: 9,
+        name: "Men Premium Hoodie",
+        category: "Men",
+        price: 749,
+        oldPrice: 1499,
+        discount: 50,
+        image: "🧥"
+    },
+
+    {
+        id: 10,
+        name: "Women Fashion Bag",
+        category: "Accessories",
+        price: 779,
+        oldPrice: 1199,
+        discount: 35,
+        image: "👜"
+    },
+
+    {
+        id: 11,
+        name: "Classic Sunglasses",
+        category: "Accessories",
+        price: 674,
+        oldPrice: 899,
+        discount: 25,
+        image: "🕶️"
+    },
+
+    {
+        id: 12,
+        name: "Women Sandals",
+        category: "Shoes",
+        price: 974,
+        oldPrice: 1299,
+        discount: 25,
+        image: "👡"
+    }
+
+];
+
+
+/* =====================================================
+   CART
+   ===================================================== */
+
+let cart =
+    JSON.parse(
+        localStorage.getItem(
+            "SFB_CART"
+        ) || "[]"
+    );
+
+
+/* =====================================================
+   BUY NOW
+   ===================================================== */
+
+const urlParams =
+    new URLSearchParams(
+        window.location.search
+    );
+
+
+const buyNowId =
+    Number(
+        urlParams.get("buyNow")
+    );
+
+
+const buyNowData =
+    JSON.parse(
+        localStorage.getItem(
+            "SFB_BUY_NOW"
+        ) || "null"
+    );
+
+
+let checkoutItems = [];
+
+
+/* =====================================================
+   PREPARE CHECKOUT
+   ===================================================== */
+
+function prepareCheckout() {
+
+
+    if (
+        buyNowId &&
+        buyNowData &&
+        buyNowData.id === buyNowId
+    ) {
+
+        checkoutItems = [
+
+            {
+                id: buyNowData.id,
+                quantity: buyNowData.quantity || 1
+            }
+
+        ];
+
+        return;
+
+    }
+
+
+    checkoutItems =
+        cart.map(
+            item => ({
+                id: item.id,
+                quantity: item.quantity
+            })
+        );
+
+}
+
+
+/* =====================================================
+   GET PRODUCT
+   ===================================================== */
+
+function getProduct(id) {
+
+    return products.find(
+        product =>
+            product.id === Number(id)
+    );
+
+}
+
+
+/* =====================================================
+   RENDER CHECKOUT
+   ===================================================== */
+
+function renderCheckout() {
+
+    const container =
+        document.getElementById(
+            "checkoutItems"
+        );
+
+
+    container.innerHTML = "";
+
+
+    if (checkoutItems.length === 0) {
+
+        container.innerHTML = `
+
+            <div
+                style="
+                    text-align:center;
+                    padding:30px 10px;
+                "
+            >
+
+                <div style="font-size:50px;">
+                    🛒
+                </div>
+
+                <h3>
+                    आपका order खाली है
+                </h3>
+
+                <button
+                    class="mainBtn"
+                    onclick="goHome()"
+                >
+                    Shopping शुरू करें
+                </button>
+
+            </div>
+
+        `;
+
+
+        updateSummary(0);
+
+        return;
+
+    }
+
+
+    let subtotal = 0;
+
+
+    checkoutItems.forEach(
+        function (item) {
+
+            const product =
+                getProduct(item.id);
+
+
+            if (!product) return;
+
+
+            const itemTotal =
+                product.price *
+                item.quantity;
+
+
+            subtotal += itemTotal;
+
+
+            const div =
+                document.createElement(
+                    "div"
+                );
+
+
+            div.className =
+                "checkoutItem";
+
+
+            div.innerHTML = `
+
+                <div class="checkoutItemImage">
+                    ${product.image}
+                </div>
+
+                <div class="checkoutItemInfo">
+
+                    <strong>
+                        ${product.name}
+                    </strong>
+
+                    <span>
+                        ₹${product.price}
+                    </span>
+
+                    <small>
+                        Quantity:
+                        ${item.quantity}
+                    </small>
+
+                </div>
+
+                <strong>
+                    ₹${itemTotal}
+                </strong>
+
+            `;
+
+
+            container.appendChild(div);
+
+        }
+    );
+
+
+    updateSummary(subtotal);
+
+}
+
+
+/* =====================================================
+   UPDATE SUMMARY
+   ===================================================== */
+
+function updateSummary(subtotal) {
+
+    const delivery =
+        subtotal > 0
+            ? 50
+            : 0;
+
+
+    const total =
+        subtotal + delivery;
+
+
+    document.getElementById(
+        "checkoutSubtotal"
+    ).textContent =
+        "₹" + subtotal;
+
+
+    document.getElementById(
+        "checkoutDelivery"
+    ).textContent =
+        "₹" + delivery;
+
+
+    document.getElementById(
+        "checkoutTotal"
+    ).textContent =
+        "₹" + total;
+
+}
+
+
+/* =====================================================
+   PLACE ORDER
+   ===================================================== */
+
+function placeOrder() {
+
+
+    if (checkoutItems.length === 0) {
+
+        showToast(
+            "पहले product select करें"
+        );
+
+        return;
+
+    }
+
+
+    const name =
+        document.getElementById(
+            "customerName"
+        ).value.trim();
+
+
+    const mobile =
+        document.getElementById(
+            "customerMobile"
+        ).value.trim();
+
+
+    const email =
+        document.getElementById(
+            "customerEmail"
+        ).value.trim();
+
+
+    const address =
+        document.getElementById(
+            "customerAddress"
+        ).value.trim();
+
+
+    const city =
+        document.getElementById(
+            "customerCity"
+        ).value.trim();
+
+
+    const state =
+        document.getElementById(
+            "customerState"
+        ).value.trim();
+
+
+    const pin =
+        document.getElementById(
+            "customerPin"
+        ).value.trim();
+
+
+    const payment =
+        document.querySelector(
+            'input[name="payment"]:checked'
+        )?.value || "COD";
+
+
+    /* VALIDATION */
+
+
+    if (!name) {
+
+        showToast(
+            "अपना नाम डालें"
+        );
+
+        return;
+
+    }
+
+
+    if (
+        !/^[0-9]{10}$/.test(mobile)
+    ) {
+
+        showToast(
+            "सही 10 digit mobile number डालें"
+        );
+
+        return;
+
+    }
+
+
+    if (!address) {
+
+        showToast(
+            "पूरा delivery address डालें"
+        );
+
+        return;
+
+    }
+
+
+    if (!city) {
+
+        showToast(
+            "City डालें"
+        );
+
+        return;
+
+    }
+
+
+    if (!state) {
+
+        showToast(
+            "State डालें"
+        );
+
+        return;
+
+    }
+
+
+    if (
+        !/^[0-9]{6}$/.test(pin)
+    ) {
+
+        showToast(
+            "सही 6 digit PIN code डालें"
+        );
+
+        return;
+
+    }
+
+
+    /* CALCULATE TOTAL */
+
+
+    let subtotal = 0;
+
+
+    checkoutItems.forEach(
+        function (item) {
+
+            const product =
+                getProduct(item.id);
+
+
+            if (product) {
+
+                subtotal +=
+                    product.price *
+                    item.quantity;
+
+            }
+
+        }
+    );
+
+
+    const delivery =
+        subtotal > 0
+            ? 50
+            : 0;
+
+
+    const total =
+        subtotal + delivery;
+
+
+    /* ORDER ID */
+
+
+    const orderId =
+        "SFB" +
+        Date.now()
+            .toString()
+            .slice(-8);
+
+
+    /* ORDER OBJECT */
+
+
+    const order = {
+
+        id: orderId,
+
+        createdAt:
+            new Date().toISOString(),
+
+        customer: {
+
+            name: name,
+
+            mobile: mobile,
+
+            email: email,
+
+            address: address,
+
+            city: city,
+
+            state: state,
+
+            pin: pin
+
+        },
+
+        items:
+            checkoutItems.map(
+                function (item) {
+
+                    const product =
+                        getProduct(item.id);
+
+
+                    return {
+
+                        id: item.id,
+
+                        name:
+                            product
+                                ? product.name
+                                : "Product",
+
+                        price:
+                            product
+                                ? product.price
+                                : 0,
+
+                        quantity:
+                            item.quantity,
+
+                        image:
+                            product
+                                ? product.image
+                                : "🛍️"
+
+                    };
+
+                }
+            ),
+
+        subtotal: subtotal,
+
+        delivery: delivery,
+
+        total: total,
+
+        paymentMethod: payment,
+
+        status: "Pending"
+
+    };
+
+
+    /* SAVE ORDER */
+
+
+    let orders =
+        JSON.parse(
+            localStorage.getItem(
+                "SFB_ORDERS"
+            ) || "[]"
+        );
+
+
+    orders.push(order);
+
+
+    localStorage.setItem(
+        "SFB_ORDERS",
+        JSON.stringify(orders)
+    );
+
+
+    /* REMOVE ORDERED ITEMS FROM CART */
+
+
+    if (!buyNowId) {
+
+        cart =
+            cart.filter(
+                function (cartItem) {
+
+                    return !checkoutItems.some(
+                        function (checkoutItem) {
+
+                            return (
+                                checkoutItem.id ===
+                                cartItem.id
+                            );
+
+                        }
+                    );
+
+                }
+            );
+
+
+        localStorage.setItem(
+            "SFB_CART",
+            JSON.stringify(cart)
+        );
+
+    }
+
+
+    /* CLEAR BUY NOW */
+
+
+    localStorage.removeItem(
+        "SFB_BUY_NOW"
+    );
+
+
+    /* SHOW SUCCESS */
+
+
+    document.getElementById(
+        "successOrderId"
+    ).textContent =
+        orderId;
+
+
+    document.getElementById(
+        "successMessage"
+    ).textContent =
+        payment === "COD"
+            ? "आपका Cash on Delivery order successfully place हो गया।"
+            : "आपका order successfully place हो गया।";
+
+
+    document.getElementById(
+        "successModal"
+    ).style.display =
+        "block";
+
+}
+
+
+/* =====================================================
+   HOME
+   ===================================================== */
+
+function goHome() {
+
+    window.location.href =
+        "index.html";
+
+}
+
+
+/* =====================================================
+   TOAST
+   ===================================================== */
+
+function showToast(message) {
+
+    const toast =
+        document.getElementById(
+            "toast"
+        );
+
+
+    toast.textContent =
+        message;
+
+
+    toast.style.display =
+        "block";
+
+
+    clearTimeout(
+        window.toastTimer
+    );
+
+
+    window.toastTimer =
+        setTimeout(
+            function () {
+
+                toast.style.display =
+                    "none";
+
+            },
+            2500
+        );
+
+}
+
+
+/* =====================================================
+   START
+   ===================================================== */
+
+prepareCheckout();
+
+renderCheckout();
+
+</script>
+
+
+<!-- =====================================================
+     CHECKOUT CSS
+     ===================================================== -->
+
+<style>
+
+.checkoutPage {
+    max-width: 1150px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.checkoutTitle {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.checkoutTitle h1 {
+    font-size: 35px;
+}
+
+.checkoutTitle p {
+    color: #777;
+}
+
+.checkoutGrid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 25px;
+}
+
+.checkoutCard {
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+
+    box-shadow:
+        0 5px 20px rgba(0,0,0,0.07);
+}
+
+.checkoutCard h2 {
+    margin-bottom: 20px;
+}
+
+.formGroup {
+    margin-bottom: 16px;
+}
+
+.formGroup label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.formGroup input,
+.formGroup textarea {
+    width: 100%;
+    padding: 12px;
+
+    border: 1px solid #ddd;
+    border-radius: 8px;
+
+    outline: none;
+
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus {
+    border-color: #ff9800;
+}
+
+.addressTitle {
+    margin-top: 25px;
+}
+
+.twoColumn {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.checkoutItem {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 13px 0;
+
+    border-bottom: 1px solid #eee;
+}
+
+.checkoutItemImage {
+    width: 55px;
+    height: 55px;
+
+    background: #f5f5f5;
+
+    border-radius: 9px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 28px;
+}
+
+.checkoutItemInfo {
+    flex: 1;
+}
+
+.checkoutItemInfo strong {
+    display: block;
+}
+
+.checkoutItemInfo span {
+    color: #e53935;
+    font-weight: bold;
+}
+
+.checkoutItemInfo small {
+    display: block;
+    color: #777;
+}
+
+.checkoutSummary {
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+}
+
+.checkoutSummary > div {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+}
+
+.checkoutTotal {
+    border-top: 1px solid #ddd;
+    margin-top: 8px;
+    padding-top: 14px !important;
+
+    font-size: 20px;
+}
+
+.checkoutTotal strong {
+    color: #e53935;
+}
+
+.paymentTitle {
+    margin-top: 25px;
+}
+
+.paymentOptions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.paymentOption {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    border: 1px solid #ddd;
+
+    padding: 13px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+}
+
+.paymentOption:hover {
+    border-color: #ff9800;
+}
+
+.paymentOption input {
+    width: 18px;
+    height: 18px;
+}
+
+.paymentOption strong {
+    display: block;
+}
+
+.paymentOption small {
+    display: block;
+    color: #777;
+    margin-top: 3px;
+}
+
+.placeOrderBtn {
+    width: 100%;
+
+    margin-top: 20px;
+
+    padding: 15px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #ff9800;
+    color: #111;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.placeOrderBtn:hover {
+    background: #f57c00;
+}
+
+.secureText {
+    text-align: center;
+    color: #777;
+    font-size: 12px;
+    margin-top: 12px;
+}
+
+.successBox {
+    max-width: 480px;
+    text-align: center;
+}
+
+.successIcon {
+    font-size: 70px;
+    margin-bottom: 15px;
+}
+
+.successBox h2 {
+    margin-bottom: 10px;
+}
+
+.successOrderId {
+    background: #f5f5f5;
+    padding: 12px;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.successBox .mainBtn {
+    max-width: 300px;
+    margin: auto;
+}
+
+
+@media (max-width: 800px) {
+
+    .checkoutGrid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .checkoutPage {
+        padding: 0 12px;
+    }
+
+    .checkoutCard {
+        padding: 18px;
+    }
+
+    .twoColumn {
+        grid-template-columns: 1fr;
+    }
+
+    .checkoutTitle h1 {
+        font-size: 28px;
+    }
+
+}
+
+</style>
+
+
+</body>
+</html>

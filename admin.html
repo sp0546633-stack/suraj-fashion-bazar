@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suraj Fashion Bazar - Admin Panel</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f6f9;
+            color: #222;
+        }
+
+        header {
+            background: #111827;
+            color: white;
+            padding: 18px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        header h1 {
+            font-size: 24px;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+            background: #2563eb;
+            padding: 10px 16px;
+            border-radius: 8px;
+        }
+
+        .container {
+            max-width: 1250px;
+            margin: auto;
+            padding: 25px 15px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .stat {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+        }
+
+        .stat h3 {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .stat p {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .toolbar {
+            background: white;
+            padding: 18px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .toolbar input,
+        .toolbar select {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        .toolbar input {
+            flex: 1;
+            min-width: 220px;
+        }
+
+        .clearBtn {
+            background: #dc2626;
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .orders {
+            display: grid;
+            gap: 18px;
+        }
+
+        .orderCard {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+        }
+
+        .orderTop {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+
+        .orderId {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .orderDate {
+            color: #777;
+            font-size: 13px;
+        }
+
+        .status {
+            padding: 7px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .statusPending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .statusConfirmed {
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+
+        .statusShipped {
+            background: #e0e7ff;
+            color: #4338ca;
+        }
+
+        .statusDelivered {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .statusCancelled {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .orderGrid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .box {
+            background: #f9fafb;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .box h3 {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .box p {
+            margin: 6px 0;
+            color: #555;
+        }
+
+        .items {
+            margin-top: 15px;
+        }
+
+        .item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .item:last-child {
+            border-bottom: none;
+        }
+
+        .itemImage {
+            width: 55px;
+            height: 55px;
+            background: #f3f4f6;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 28px;
+        }
+
+        .itemInfo {
+            flex: 1;
+        }
+
+        .itemInfo strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .itemInfo span {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .orderBottom {
+            margin-top: 18px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .total {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .actions select {
+            padding: 9px;
+            border: 1px solid #ddd;
+            border-radius: 7px;
+        }
+
+        .deleteBtn {
+            background: #dc2626;
+            color: white;
+            border: none;
+            padding: 9px 14px;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+
+        .empty {
+            background: white;
+            padding: 40px;
+            text-align: center;
+            border-radius: 12px;
+            color: #777;
+        }
+
+        .notice {
+            background: #fff7ed;
+            color: #9a3412;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 800px) {
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .orderGrid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            header {
+                padding: 15px;
+            }
+
+            header h1 {
+                font-size: 20px;
+            }
+
+            .container {
+                padding: 15px 10px;
+            }
+
+            .orderCard {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>🛍️ Suraj Fashion Bazar — Admin</h1>
+    <a href="index.html">🏠 Store पर जाएँ</a>
+</header>
+
+<div class="container">
+
+    <div class="notice">
+        ⚠️ यह अभी <b>Demo Admin Panel</b> है। Orders इस browser के localStorage में रखे गए हैं।
+    </div>
+
+    <!-- STATISTICS -->
+    <div class="stats">
+
+        <div class="stat">
+            <h3>कुल Orders</h3>
+            <p id="totalOrders">0</p>
+        </div>
+
+        <div class="stat">
+            <h3>कुल Sales</h3>
+            <p id="totalSales">₹0</p>
+        </div>
+
+        <div class="stat">
+            <h3>Pending Orders</h3>
+            <p id="pendingOrders">0</p>
+        </div>
+
+        <div class="stat">
+            <h3>Delivered Orders</h3>
+            <p id="deliveredOrders">0</p>
+        </div>
+
+    </div>
+
+    <!-- SEARCH + FILTER -->
+    <div class="toolbar">
+
+        <input
+            type="text"
+            id="orderSearch"
+            placeholder="🔍 Order ID, नाम या Mobile से खोजें..."
+        >
+
+        <select id="statusFilter">
+            <option value="ALL">सभी Status</option>
+            <option value="Pending">Pending</option>
+            <option value="Confirmed">Confirmed</option>
+            <option value="Shipped">Shipped</option>
+            <option value="Delivered">Delivered</option>
+            <option value="Cancelled">Cancelled</option>
+        </select>
+
+        <button class="clearBtn" id="clearAllBtn">
+            🗑️ सभी Orders हटाएँ
+        </button>
+
+    </div>
+
+    <!-- ORDERS -->
+    <div id="ordersContainer" class="orders"></div>
+
+</div>
+
+<script src="admin.js"></script>
+
+</body>
+</html>

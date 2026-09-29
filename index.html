@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Suraj Fashion Bazar</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+    <div class="logo">
+        🛍️ <span>Suraj Fashion Bazar</span>
+    </div>
+
+    <div class="headerSearch">
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Product search करें..."
+        >
+        <button onclick="applyFilters()">🔍</button>
+    </div>
+
+    <div class="headerActions">
+
+        <button onclick="openWishlist()">
+            ❤️ <span id="wishlistCount">0</span>
+        </button>
+
+        <button onclick="openCart()">
+            🛒 <span id="cartCount">0</span>
+        </button>
+
+        <button onclick="openLogin()">
+            👤 Login
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <button onclick="filterCategory('All')">
+        🏠 Home
+    </button>
+
+    <button onclick="filterCategory('Men')">
+        👕 Men
+    </button>
+
+    <button onclick="filterCategory('Women')">
+        👗 Women
+    </button>
+
+    <button onclick="filterCategory('Shoes')">
+        👟 Shoes
+    </button>
+
+    <button onclick="filterCategory('Watches')">
+        ⌚ Watches
+    </button>
+
+    <button onclick="filterCategory('Accessories')">
+        👜 Accessories
+    </button>
+
+</nav>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="heroContent">
+
+        <p class="heroSmall">
+            ✨ Welcome to
+        </p>
+
+        <h1>
+            Suraj Fashion Bazar
+        </h1>
+
+        <h2>
+            Fashion • Style • Best Price
+        </h2>
+
+        <p>
+            Latest fashion products और शानदार discounts
+            एक ही जगह।
+        </p>
+
+        <button
+            class="heroBtn"
+            onclick="document.getElementById('products').scrollIntoView()"
+        >
+            🛍️ Shop Now
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FEATURES ================= -->
+
+<section class="features">
+
+    <div class="featureBox">
+        <div class="featureIcon">🚚</div>
+        <h3>Fast Delivery</h3>
+        <p>आपके order की जल्दी delivery</p>
+    </div>
+
+    <div class="featureBox">
+        <div class="featureIcon">💰</div>
+        <h3>Best Price</h3>
+        <p>कम कीमत में शानदार products</p>
+    </div>
+
+    <div class="featureBox">
+        <div class="featureIcon">🔄</div>
+        <h3>Easy Return</h3>
+        <p>Return और Exchange सुविधा</p>
+    </div>
+
+    <div class="featureBox">
+        <div class="featureIcon">🔒</div>
+        <h3>Secure Order</h3>
+        <p>Simple और सुरक्षित checkout</p>
+    </div>
+
+</section>
+
+
+<!-- ================= PRODUCTS ================= -->
+
+<section id="products" class="section">
+
+    <div class="sectionHeader">
+
+        <div>
+            <h2>🛍️ Our Products</h2>
+
+            <p id="productResult">
+                12 Products
+            </p>
+        </div>
+
+    </div>
+
+
+    <!-- FILTER BOX -->
+
+    <div class="filterBox">
+
+        <!-- SEARCH -->
+
+        <div class="filterItem">
+
+            <label>
+                🔍 Search Product
+            </label>
+
+            <input
+                type="text"
+                id="productSearch"
+                placeholder="जैसे T-Shirt, Shoes..."
+            >
+
+        </div>
+
+
+        <!-- CATEGORY -->
+
+        <div class="filterItem">
+
+            <label>
+                🏷️ Category
+            </label>
+
+            <div class="categoryFilters">
+
+                <button
+                    class="categoryBtn active"
+                    data-category="All"
+                    onclick="filterCategory('All')"
+                >
+                    All
+                </button>
+
+                <button
+                    class="categoryBtn"
+                    data-category="Men"
+                    onclick="filterCategory('Men')"
+                >
+                    👕 Men
+                </button>
+
+                <button
+                    class="categoryBtn"
+                    data-category="Women"
+                    onclick="filterCategory('Women')"
+                >
+                    👗 Women
+                </button>
+
+                <button
+                    class="categoryBtn"
+                    data-category="Shoes"
+                    onclick="filterCategory('Shoes')"
+                >
+                    👟 Shoes
+                </button>
+
+                <button
+                    class="categoryBtn"
+                    data-category="Watches"
+                    onclick="filterCategory('Watches')"
+                >
+                    ⌚ Watches
+                </button>
+
+                <button
+                    class="categoryBtn"
+                    data-category="Accessories"
+                    onclick="filterCategory('Accessories')"
+                >
+                    👜 Accessories
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRICE -->
+
+        <div class="filterItem">
+
+            <label>
+                💰 Price
+            </label>
+
+            <select id="priceFilter">
+
+                <option value="ALL">
+                    All Prices
+                </option>
+
+                <option value="0-500">
+                    Under ₹500
+                </option>
+
+                <option value="500-1000">
+                    ₹500 - ₹1000
+                </option>
+
+                <option value="1000+">
+                    Above ₹1000
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- DISCOUNT -->
+
+        <div class="filterItem">
+
+            <label>
+                🏷️ Discount
+            </label>
+
+            <select id="discountFilter">
+
+                <option value="ALL">
+                    All Discounts
+                </option>
+
+                <option value="25">
+                    25% OFF
+                </option>
+
+                <option value="35">
+                    35% OFF
+                </option>
+
+                <option value="50">
+                    50% OFF
+                </option>
+
+                <option value="50PLUS">
+                    50%+ OFF
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- SORT -->
+
+        <div class="filterItem">
+
+            <label>
+                🔽 Sort
+            </label>
+
+            <select id="sortFilter">
+
+                <option value="DEFAULT">
+                    Default
+                </option>
+
+                <option value="LOW">
+                    Price: Low → High
+                </option>
+
+                <option value="HIGH">
+                    Price: High → Low
+                </option>
+
+                <option value="DISCOUNT">
+                    Discount: High → Low
+                </option>
+
+                <option value="NAME">
+                    Name: A → Z
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- RESET -->
+
+        <button
+            class="resetFilterBtn"
+            onclick="resetFilters()"
+        >
+            🔄 Reset Filters
+        </button>
+
+    </div>
+
+
+    <!-- PRODUCT GRID -->
+
+    <div
+        id="productGrid"
+        class="productGrid"
+    ></div>
+
+
+    <!-- NO PRODUCT -->
+
+    <div
+        id="noProducts"
+        class="noProducts"
+        style="display:none;"
+    >
+
+        <div>
+            😕
+        </div>
+
+        <h3>
+            Product नहीं मिला
+        </h3>
+
+        <p>
+            Search या filter बदलकर फिर कोशिश करें।
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CART MODAL ================= -->
+
+<div
+    id="cartModal"
+    class="modal"
+>
+
+    <div class="modalContent">
+
+        <button
+            class="closeModal"
+            onclick="closeModal('cartModal')"
+        >
+            ✕
+        </button>
+
+        <h2>
+            🛒 My Cart
+        </h2>
+
+        <div id="cartItems"></div>
+
+        <div class="cartSummary">
+
+            <div>
+                <span>Subtotal</span>
+                <strong id="cartSubtotal">
+                    ₹0
+                </strong>
+            </div>
+
+            <div>
+                <span>Delivery</span>
+                <strong id="cartDelivery">
+                    ₹0
+                </strong>
+            </div>
+
+            <div class="cartTotalRow">
+                <span>Total</span>
+                <strong id="cartTotal">
+                    ₹0
+                </strong>
+            </div>
+
+        </div>
+
+        <button
+            class="checkoutBtn"
+            onclick="goToCheckout()"
+        >
+            ⚡ Proceed to Checkout
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================= WISHLIST MODAL ================= -->
+
+<div
+    id="wishlistModal"
+    class="modal"
+>
+
+    <div class="modalContent">
+
+        <button
+            class="closeModal"
+            onclick="closeModal('wishlistModal')"
+        >
+            ✕
+        </button>
+
+        <h2>
+            ❤️ My Wishlist
+        </h2>
+
+        <div id="wishlistItems"></div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= LOGIN MODAL ================= -->
+
+<div
+    id="loginModal"
+    class="modal"
+>
+
+    <div class="modalContent loginBox">
+
+        <button
+            class="closeModal"
+            onclick="closeModal('loginModal')"
+        >
+            ✕
+        </button>
+
+        <h2>
+            👤 Login / Signup
+        </h2>
+
+        <p>
+            अपना नाम डालकर continue करें।
+        </p>
+
+        <input
+            type="text"
+            id="loginName"
+            placeholder="आपका नाम"
+        >
+
+        <input
+            type="tel"
+            id="loginMobile"
+            placeholder="Mobile Number"
+            maxlength="10"
+        >
+
+        <button
+            class="mainBtn"
+            onclick="loginUser()"
+        >
+            Continue
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================= TOAST ================= -->
+
+<div
+    id="toast"
+    class="toast"
+>
+    Product added successfully
+</div>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    <div class="footerGrid">
+
+        <div>
+
+            <h2>
+                🛍️ Suraj Fashion Bazar
+            </h2>
+
+            <p>
+                Fashion और shopping का आसान destination।
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h3>
+                Quick Links
+            </h3>
+
+            <button onclick="filterCategory('All')">
+                All Products
+            </button>
+
+            <button onclick="filterCategory('Men')">
+                Men
+            </button>
+
+            <button onclick="filterCategory('Women')">
+                Women
+            </button>
+
+        </div>
+
+
+        <div>
+
+            <h3>
+                Customer Service
+            </h3>
+
+            <p>
+                📦 My Orders
+            </p>
+
+            <p>
+                🔄 Return / Exchange
+            </p>
+
+            <p>
+                ❓ Help Center
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h3>
+                Payment
+            </h3>
+
+            <p>
+                💵 Cash on Delivery
+            </p>
+
+            <p>
+                💳 Online Payment
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="footerBottom">
+
+        © 2026 Suraj Fashion Bazar —
+        All Rights Reserved.
+
+    </div>
+
+</footer>
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script src="app.js"></script>
+
+</body>
+</html>
